@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script src="../dist/dist.js"></script>
+	<link href="jsoneditor.css" rel="stylesheet" type="text/css">
+    <script src="jsoneditor.js"></script>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?b25bf95dd99f58452db28b1e99a1a46f";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+     </script>
+
+</head>
+<body>
+	<div style="text-align: center;height:40px;line-height:40px;"><a href="https://github.com/finance-sh/randomjson" style="font-size:20px;">点击查看API文档</a></div>
+<div>
+	<div id="jsoneditor" style="width: 500px; height: 800px; float: left;"></div>
+	<button id="btn" style="float: left;margin-top:100px;width:100px;height:40px;margin-left:20px;margin-right:20px;">转换</button>
+	<div id="jsoneditor2" style="width: 500px; height: 800px; float: left;"></div>
+</div>
+	<script>
+	    var modelJson = {
+    		"status": "<@[1,2,3]>",
+    		"statusTxt": "<@提交|审批中|结束>",
+	        "code": "00",
+	        "numberCode": "<@[10000,20000]>",
+	        "msg": "<@chinese{12,50}>",
+	        "msg2": "<@string{2,3}>",
+	        "logo": "<@image{100,100}>",
+	        "percent": "<@[0.00-1.00]>",
+	        "result": {
+	            "pList<@{1,3}>":[ 
+	                {
+	                    "indexToString": "<@index><@>",
+	                    "index": "<@index>",
+	                    "id": "<@[1-5]>", 
+	                    "price": "<@float>",
+	                    "name": "公司名称<@index>",
+	                    "person": "李文武<@index>",
+	                    "address": "北京市海淀区西三旗",
+	                    "mobile": "1<@number{10}>",
+	                    "tel": "<@number{4}>-<@number{8}>",
+	                    "list": [
+	                        {
+	                            "auditKey": 1,
+	                            "auditValue": "<@[0,1,2]>"
+	                        }, 
+	                        {
+	                            "auditKey": 2,
+	                            "auditValue": "<@[0,1,2]>"
+	                        }
+	                    ]
+	                }
+	            ]
+	        }
+	    }
+	    var btnDom = document.getElementById('btn');
+
+	    var container = document.getElementById("jsoneditor");
+        var editor = new JSONEditor(container);
+        editor.setMode('code');
+        editor.set(modelJson);
+
+        var container2 = document.getElementById("jsoneditor2");
+        var editor2 = new JSONEditor(container2);
+        editor2.setMode('code');
+        
+
+	    btnDom.onclick = function (e) {
+	    	var myJson = randomjson(editor.get());
+	    	editor2.set(myJson);
+	    	console.log(myJson);
+	    }
+	    // init
+	    var myJson = randomjson(modelJson);
+    	editor2.set(myJson);
+    	console.log(myJson);
+	</script>
+</body>
+</html>
