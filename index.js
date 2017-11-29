@@ -65,7 +65,7 @@ function readObject(pro, obj, upperObj, bindIndex) {
 }
 // read array
 function readArray(key, arr, upperObj) {
-    var syntaxMatch = key.match(arrQuanReg);
+    var syntaxMatch = key.toString().match(arrQuanReg);
     var leftArr;
     if (syntaxMatch !== null) {
         arr = randomArray(arr, syntaxMatch[2], syntaxMatch[3], syntaxMatch[4]);
@@ -73,9 +73,10 @@ function readArray(key, arr, upperObj) {
     arr.forEach(function (item, index) {
         if (getJsonType(item) === 'object') {
             upperObj[index] = {};
-            readObject(index, item, upperObj[index], index + 1);
+            readObject(index, item, upperObj[index], index);
         }
         else if (getJsonType(item) === 'array') {
+            upperObj[index] = [];
             readArray(index, item, upperObj[index]);
         }
         else {
