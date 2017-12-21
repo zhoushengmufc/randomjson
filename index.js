@@ -149,7 +149,7 @@ function randomByType(synTxt, keyType, fNumber, sNumber, tNumber, bindIndex) {
         return randomChinese(fNumber, sNumber, tNumber);
     }
     else if (keyType === 'index') {
-        return bindIndex;
+        return bindIndex + 1;
     }
     else if (keyType === 'float') {
         return randomFloat(fNumber, tNumber);
