@@ -357,5 +357,3 @@ Generate random json according to condition json
                 "p10": "<@string>"
             }]
 ``` 
-
-## QQ群：533916703 
